@@ -5,7 +5,6 @@ import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MockUSDT is ERC20 {
     constructor() ERC20("Mock USDT", "mUSDT") {
-        // Mint 1,000,000 USDT to deployer
         _mint(msg.sender, 1_000_000 * 10 ** decimals());
     }
 
