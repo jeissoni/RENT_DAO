@@ -14,7 +14,9 @@ contract DAO_RENT {
 
     address public usdt;
     address public owner;
+    address public treasury;
     uint256 public proposalCount;
+
 
     // shares of the DAO
     uint256 public totalShares;
@@ -43,6 +45,7 @@ contract DAO_RENT {
 
     constructor(address _usdt) {
         owner = msg.sender;
+        treasury = msg.sender;
         totalShares = 500;
         usdt = _usdt;
         USDTbyShare = 100 * 10 ** 18;
@@ -106,7 +109,7 @@ contract DAO_RENT {
         totalSharesBought += amountShares;
 
         //transfer USDT to the DAO
-        IERC20(usdt).transferFrom(msg.sender, address(this), amountUSDT);
+        IERC20(usdt).transferFrom(msg.sender, treasury, amountUSDT);
         //add the user to the members
         isMember[msg.sender] = true;
         //emit an event
